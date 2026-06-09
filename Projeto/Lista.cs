@@ -53,7 +53,7 @@ class Lista
         }
     }
 
-    public void Buscar()
+    public void BuscarPorIndex()
     {
         Console.WriteLine("Insira o Index da pessoa a ser buscada:");
         int index = int.Parse(Console.ReadLine());
