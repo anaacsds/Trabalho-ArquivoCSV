@@ -37,10 +37,10 @@ class Pesquisa
         switch (opcao)
         {
             case 1:
-                int indexValor = int.Parse(valor);
+                int IndexValor = int.Parse(valor);
 
                 resultados.OrderBy(p => p.Index).ToList();
-                resultados = resultados.Where(p => p.Index == indexValor).ToList();
+                resultados = resultados.Where(p => p.Index == IndexValor).ToList();
 
                 if (resultados.Count == 0)
                 {
@@ -55,20 +55,96 @@ class Pesquisa
                 }
                 break;
             case 2:
+                string IdValor = valor;
+                resultados.OrderBy(p => p.Id).ToList();
+                resultados = resultados.Where(p => p.Id == IdValor).ToList();
+
+                if (resultados.Count == 0)
+                {
+                    Console.WriteLine("Nenhum resultado encontrado.");
+                }
+                else
+                {
+                    foreach (var pessoa in resultados)
+                    {
+                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+                    }
+                }
                 break;
             case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
+                string FirstNameValor = valor;
+                resultados.OrderBy(p => p.FirstName).ToList();
+                resultados = resultados.Where(p => p.FirstName == FirstNameValor).ToList();
+
+                if (resultados.Count == 0)
+                {
+                    Console.WriteLine("Nenhum resultado encontrado.");
+                }
+                else
+                {
+                    foreach (var pessoa in resultados)
+                    {
+                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+                    }
+                }
+
 
                 break;
+            case 4:
+                string LastNameValor = valor;
+                resultados.OrderBy(p => p.LastName).ToList();
+                resultados = resultados.Where(p => p.LastName == LastNameValor).ToList();
+
+                if (resultados.Count == 0)
+                {
+                    Console.WriteLine("Nenhum resultado encontrado.");
+                }
+                else
+                {
+                    foreach (var pessoa in resultados)
+                    {
+                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+                    }
+                }
+                break;
+            case 5:
+                string SexValor = valor;
+                resultados.OrderBy(p => p.Sex).ToList();
+                resultados = resultados.Where(p => p.Sex == SexValor).ToList();
+
+                if (resultados.Count == 0)
+                {
+                    Console.WriteLine("Nenhum resultado encontrado.");
+                }
+                else
+                {
+                    foreach (var pessoa in resultados)
+                    {
+                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+                    }
+                }
+                break;
+            case 6:
+                string EmailValor = valor;
+                resultados.OrderBy(p => p.Email).ToList();
+                resultados = resultados.Where(p => p.Email == EmailValor).ToList();
+
+                if (resultados.Count == 0)
+                {
+                    Console.WriteLine("Nenhum resultado encontrado.");
+                }
+                else
+                {
+                    foreach (var pessoa in resultados)
+                    {
+                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+                    }
+                }
+                break;
             case 7:
-                string phoneValor = valor;
+                string PhoneValor = valor;
                 resultados.OrderBy(p => p.Phone).ToList();
-                resultados = resultados.Where(p => p.Phone == phoneValor).ToList();
+                resultados = resultados.Where(p => p.Phone == PhoneValor).ToList();
 
                 if (resultados.Count == 0)
                 {
@@ -83,8 +159,38 @@ class Pesquisa
                 }
                 break;
             case 8:
+                string DateOfBirthValor = valor;
+                resultados.OrderBy(p => p.DateOfBirth).ToList();
+                resultados = resultados.Where(p => p.DateOfBirth == DateOfBirthValor).ToList();
+
+                if (resultados.Count == 0)
+                {
+                    Console.WriteLine("Nenhum resultado encontrado.");
+                }
+                else
+                {
+                    foreach (var pessoa in resultados)
+                    {
+                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+                    }
+                }
                 break;
             case 9:
+                string JobTitleValor = valor;
+                resultados.OrderBy(p => p.JobTitle).ToList();
+                resultados = resultados.Where(p => p.JobTitle == JobTitleValor).ToList();
+
+                if (resultados.Count == 0)
+                {
+                    Console.WriteLine("Nenhum resultado encontrado.");
+                }
+                else
+                {
+                    foreach (var pessoa in resultados)
+                    {
+                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+                    }
+                }
                 break;
             default:
                 Console.WriteLine("Opcao inválida.");
