@@ -50,6 +50,6 @@ O sistema permite:
 
 - [Ana Clara Silva dos Santos](https://github.com/anaacsds)
 - [Caique Lima]()
-- [Eduardo Henrique] ()
+- [Eduardo Henrique] (https://github.com/EduardoHenrick2)
 - [Maria Clara] (https://github.com/MariaCHenrique) 
 - [Matheus Lage] (https://github.com/LageTx)
