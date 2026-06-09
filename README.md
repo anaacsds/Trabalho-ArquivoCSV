@@ -46,7 +46,7 @@ O sistema permite:
 
 ---
 
-## 👨‍💻 Autor(es)
+## 👨‍💻 Autores
 
 - [Ana Clara Silva dos Santos](https://github.com/anaacsds)
 - [Caique Lima]()
