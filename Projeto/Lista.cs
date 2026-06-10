@@ -2,6 +2,10 @@ class Lista
 {
     List<Person> lista = new List<Person>();
 
+    public Lista(List<Person> lista)
+    {
+        this.lista = lista;
+    }
     public void Inserir()
     {
         Console.WriteLine("Insira o Index da pessoa:");

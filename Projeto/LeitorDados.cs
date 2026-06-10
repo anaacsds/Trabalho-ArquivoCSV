@@ -47,7 +47,7 @@ namespace LeitorDados
                         listaDoGrupo.Add(novoRegistro);
                     }
                 }
-                Console.WriteLine($"\n--> Sucesso: {limiteRegistros} registros foram salvos na TAD! <--");
+                Console.WriteLine($"\n--> Sucesso: {limiteRegistros} registros foram salvos na lista <--");
             }
             catch (Exception ex)
             {
