@@ -30,168 +30,330 @@ class Pesquisa
         Console.Write("Digite o valor a buscar: ");
         string valor = Console.ReadLine();
 
-        List<Person> resultados = new List<Person>();
-
-        resultados = lista;
+        List<Person> resultados;
+        int idx, esq, dir;
 
         switch (opcao)
         {
             case 1:
-                int IndexValor = int.Parse(valor);
+                int indexValor = int.Parse(valor);
 
-                resultados.OrderBy(p => p.Index).ToList();
-                resultados = resultados.Where(p => p.Index == IndexValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.Index.CompareTo(b.Index));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(indexValor, "", "", "", "", "", "", "", ""),
+                    Comparer<Person>.Create((a, b) => a.Index.CompareTo(b.Index))
+                );
+
+                if (idx < 0)
                 {
                     Console.WriteLine("Nenhum resultado encontrado.");
+                    break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].Index == indexValor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].Index == indexValor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
+
                 break;
+
             case 2:
-                string IdValor = valor;
-                resultados.OrderBy(p => p.Id).ToList();
-                resultados = resultados.Where(p => p.Id == IdValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.Id.CompareTo(b.Id));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, valor, "", "", "", "", "", "", ""),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.Id, b.Id))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].Id == valor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].Id == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
                 break;
+
             case 3:
-                string FirstNameValor = valor;
-                resultados.OrderBy(p => p.FirstName).ToList();
-                resultados = resultados.Where(p => p.FirstName == FirstNameValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, "", valor, "", "", "", "", "", ""),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.FirstName, b.FirstName))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
-                }
-                else
-                {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
 
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].FirstName == valor)
+                {
+                    esq--;
+                }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].FirstName == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
 
                 break;
+
             case 4:
-                string LastNameValor = valor;
-                resultados.OrderBy(p => p.LastName).ToList();
-                resultados = resultados.Where(p => p.LastName == LastNameValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.LastName.CompareTo(b.LastName));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, "", "", valor, "", "", "", "", ""),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.LastName, b.LastName))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].LastName == valor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].LastName == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
                 break;
+
             case 5:
-                string SexValor = valor;
-                resultados.OrderBy(p => p.Sex).ToList();
-                resultados = resultados.Where(p => p.Sex == SexValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.Sex.CompareTo(b.Sex));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, "", "", "", valor, "", "", "", ""),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.Sex, b.Sex))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].Sex == valor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].Sex == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
                 break;
+
             case 6:
-                string EmailValor = valor;
-                resultados.OrderBy(p => p.Email).ToList();
-                resultados = resultados.Where(p => p.Email == EmailValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.Email.CompareTo(b.Email));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, "", "", "", "", valor, "", "", ""),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.Email, b.Email))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].Email == valor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].Email == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
                 break;
+
             case 7:
-                string PhoneValor = valor;
-                resultados.OrderBy(p => p.Phone).ToList();
-                resultados = resultados.Where(p => p.Phone == PhoneValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.Phone.CompareTo(b.Phone));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, "", "", "", "", "", valor, "", ""),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.Phone, b.Phone))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].Phone == valor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].Phone == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
                 break;
+
             case 8:
-                string DateOfBirthValor = valor;
-                resultados.OrderBy(p => p.DateOfBirth).ToList();
-                resultados = resultados.Where(p => p.DateOfBirth == DateOfBirthValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.DateOfBirth.CompareTo(b.DateOfBirth));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, "", "", "", "", "", "", valor, ""),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.DateOfBirth, b.DateOfBirth))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].DateOfBirth == valor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].DateOfBirth == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
                 break;
+
             case 9:
-                string JobTitleValor = valor;
-                resultados.OrderBy(p => p.JobTitle).ToList();
-                resultados = resultados.Where(p => p.JobTitle == JobTitleValor).ToList();
+                resultados = new List<Person>(lista);
+                resultados.Sort((a, b) => a.JobTitle.CompareTo(b.JobTitle));
 
-                if (resultados.Count == 0)
+                idx = resultados.BinarySearch(
+                    new Person(0, "", "", "", "", "", "", "", valor),
+                    Comparer<Person>.Create((a, b) => string.Compare(a.JobTitle, b.JobTitle))
+                );
+
+                if (idx < 0)
                 {
-                    Console.WriteLine("Nenhum resultado encontrado.");
+                    Console.WriteLine("Nenhum resultado encontrado."); break;
                 }
-                else
+
+                esq = idx; dir = idx;
+                while (esq > 0 && resultados[esq - 1].JobTitle == valor)
                 {
-                    foreach (var pessoa in resultados)
-                    {
-                        Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
-                    }
+                    esq--;
                 }
+                while (dir < resultados.Count - 1 && resultados[dir + 1].JobTitle == valor)
+                {
+                    dir++;
+                }
+
+                for (int i = esq; i <= dir; i++)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine($"Index: {resultados[i].Index}, Id: {resultados[i].Id}, FirstName: {resultados[i].FirstName}, LastName: {resultados[i].LastName}, Sex: {resultados[i].Sex}, Email: {resultados[i].Email}, Phone: {resultados[i].Phone}, DateOfBirth: {resultados[i].DateOfBirth}, JobTitle: {resultados[i].JobTitle}");
+
+                    Console.WriteLine("--------------------------------------------------");
+                }
+
                 break;
+
             default:
                 Console.WriteLine("Opcao inválida.");
                 break;

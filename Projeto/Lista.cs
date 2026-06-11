@@ -51,6 +51,7 @@ class Lista
     {
         foreach (var pessoa in lista)
         {
+
             Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
 
             Console.WriteLine("--------------------------------------------------");
@@ -66,7 +67,10 @@ class Lista
 
         if (pessoa != null)
         {
+
             Console.WriteLine($"Index: {pessoa.Index}, Id: {pessoa.Id}, FirstName: {pessoa.FirstName}, LastName: {pessoa.LastName}, Sex: {pessoa.Sex}, Email: {pessoa.Email}, Phone: {pessoa.Phone}, DateOfBirth: {pessoa.DateOfBirth}, JobTitle: {pessoa.JobTitle}");
+
+            Console.WriteLine("--------------------------------------------------");
         }
         else
         {
